@@ -1,0 +1,27 @@
+{
+  "name": "nexus-commerce",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Nexus Commerce - production-style full-stack MERN e-commerce platform",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "install:all": "npm install && npm --prefix server install && npm --prefix client install",
+    "db:start": "bash scripts/mongo-start.sh",
+    "db:stop": "bash scripts/mongo-stop.sh",
+    "seed": "npm --prefix server run seed",
+    "seed:destroy": "npm --prefix server run seed:destroy",
+    "dev": "concurrently -n api,web -c cyan,magenta \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "build": "npm --prefix client run build",
+    "start": "npm --prefix server start",
+    "test:smoke": "node scripts/smoke-test.mjs",
+    "lint": "npm --prefix server run lint && npm --prefix client run lint"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
